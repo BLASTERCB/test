@@ -1,64 +1,64 @@
 body{
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 .section {
-  margin-bottom: 0; 
-  transition: margin 0.3s ease; 
+    margin-bottom: 0; 
+    transition: margin 0.3s ease; 
 }
 
 .margin-applied {
-  margin-bottom: 40px; 
+    margin-bottom: 40px; 
 }
 
 .code{
-  background-color: rgb(231, 228, 228);
-  text-align: left;
+    background-color: rgb(231, 228, 228);
+    text-align: left;
 }
-
+  
 .styled-anchor {
-  color: red;
-  text-decoration: underline;
+    color: red;
+    text-decoration: underline;
 }
 
 .header-2 {
-  display: hidden;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: url(background.webp);
-  background-size: cover;     
-  margin: 0;
-  height: 400px;
+    display: hidden;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: url(background.webp);
+    background-size: cover;     
+    margin: 0;
+    height: 400px;
 }
 
 .header-title {
-  color: white;
-  font-size: 2.5rem;
-  font-weight: 600;
-  text-align: center;
-  margin-top: 10px;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .cta-button {
-  border: 2px solid red;
-  background: transparent;
-  color: white;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-radius: 50px;
+    border: 2px solid red;
+    background: transparent;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 50px;
 }
 
 .cta-button:hover {
-  background-color: red;
+    background-color: red;
 }
 
 .image {
-  width: 20px; 
-  height: 20px; 
+    width: 20px; 
+    height: 20px; 
 }
