@@ -17,6 +17,25 @@ const elements = {
     header2: document.querySelector(".header-2")
 };
 
+const setDynamicMargins = () => {
+    const windowWidth = window.innerWidth;
+    const marginValue = windowWidth < 1040 ? '0' : '220px';
+
+    if (localStorage.getItem("sectionVisible2") === "true") {
+        elements.header1.style.margin = `0 ${marginValue}`;
+        elements.introduction.style.margin = `0 ${marginValue}`;
+        elements.sections.section1.style.margin = `0 ${marginValue}`;
+        elements.sections.section2.style.margin = `0 ${marginValue}`;
+        elements.sections.section3.style.margin = `0 ${marginValue}`;
+    } else {
+        elements.header1.style.margin = "0";
+        elements.introduction.style.margin = "0";
+        elements.sections.section1.style.margin = "0";
+        elements.sections.section2.style.margin = "0";
+        elements.sections.section3.style.margin = "0";
+    }
+};
+
 const setSectionVisibility = (sectionKey, sectionElement, marginAppliedClass = '') => {
     if (localStorage.getItem(`sectionVisible${sectionKey}`) === "true") {
         sectionElement.classList.remove("hidden");
@@ -38,19 +57,27 @@ localStorage.removeItem("sectionVisible1");
 localStorage.removeItem("sectionVisible2");
 localStorage.removeItem("sectionVisible3");
 
-setSectionVisibility(1, elements.sections.section1, "margin-applied");
-setSectionVisibility(2, elements.sections.section2, "margin-applied");
+setSectionVisibility(1, elements.sections.section1);
+setSectionVisibility(2, elements.sections.section2);
 setSectionVisibility(3, elements.sections.section3);
 if (localStorage.getItem("sectionVisible3") === "true") {
     styleAllAnchors();
 }
+
+setDynamicMargins();
+window.addEventListener('resize', setDynamicMargins);
 
 elements.anchors.anchor1.addEventListener("click", (e) => {
     e.preventDefault();
     elements.sections.section1.classList.remove("hidden");
     elements.sections.section1.scrollIntoView({ behavior: "smooth" });
     localStorage.setItem("sectionVisible1", "true");
-    elements.introduction.classList.add("margin-applied");
+
+    if (localStorage.getItem("sectionVisible2") === "true") {
+        elements.introduction.classList.add("margin-applied");
+    }
+
+    setDynamicMargins();
 });
 
 elements.anchors.anchor2.addEventListener("click", (e) => {
@@ -58,14 +85,9 @@ elements.anchors.anchor2.addEventListener("click", (e) => {
     elements.sections.section2.classList.remove("hidden");
     elements.sections.section2.scrollIntoView({ behavior: "smooth" });
     localStorage.setItem("sectionVisible2", "true");
-    applyMargin(elements.sections.section1, "margin-applied");
 
-    // Apply margin to header-1, introduction, and sections
-    elements.header1.style.margin = "0 220px";
-    elements.introduction.style.margin = "0 220px";
-    elements.sections.section1.style.margin = "0 220px"; 
-    elements.sections.section2.style.margin = "0 220px"; 
-    elements.sections.section3.style.margin = "0 220px"; 
+    applyMargin(elements.sections.section1, "margin-applied");
+    setDynamicMargins();
 });
 
 elements.anchors.anchor3.addEventListener("click", (e) => {
@@ -75,11 +97,7 @@ elements.anchors.anchor3.addEventListener("click", (e) => {
     localStorage.setItem("sectionVisible3", "true");
     applyMargin(elements.sections.section2, "margin-applied");
     styleAllAnchors();
-
-    // Apply margin to section3
-    elements.header1.style.margin = "0 220px";
-    elements.introduction.style.margin = "0 220px";
-    elements.sections.section3.style.margin = "0 220px"; 
+    setDynamicMargins();
 });
 
 elements.finalLookLink.addEventListener("click", (e) => {
@@ -87,17 +105,11 @@ elements.finalLookLink.addEventListener("click", (e) => {
     elements.preTagsInSection2.forEach(preTag => {
         preTag.style.backgroundColor = "lightblue";
         preTag.style.borderLeft = "2px solid blue";
-        preTag.style.borderBottom = "px soldi gray";
+        preTag.style.borderBottom = "2px solid gray";
     });
 
-    // Hide .header-1 and show .header-2
     elements.header1.style.display = "none";
-    
-    // Reset margin for header-2 and ensure it's displayed properly
-    elements.header2.classList.remove("hidden");  // Unhide header-2
-    elements.header2.style.display = "flex";  // Ensure header-2 is flex
-    elements.header2.style.margin = "0";  // Remove any margin specifically from header-2
-
-    // Keep the rest of the body margin intact
-    // (No changes to the body margin here)
+    elements.header2.classList.remove("hidden");
+    elements.header2.style.display = "flex";
+    elements.header2.style.margin = "0";
 });
